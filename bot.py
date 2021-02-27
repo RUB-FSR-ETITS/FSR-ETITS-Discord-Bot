@@ -1,8 +1,8 @@
 import discord
 
-token = "ODE0MjM3NzI4ODM2MTU3NTMx.YDa7-g.bJBVl_0c1k72Y6DSY85uP5kP2ws"
-channel_id = 814239399205929065
-role_id = 814985448526446642
+token = ""
+channel_id = 0
+role_id = 0
 
 class MyClient(discord.Client):
 
