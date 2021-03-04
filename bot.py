@@ -1,9 +1,5 @@
 import discord
-
-token = ""
-channel_id = 0
-role_id = 0
-bot_channel_ids = [] # bot responds in every channel that's ID you're adding to the list
+import config
 
 class MyClient(discord.Client):
 
@@ -13,7 +9,7 @@ class MyClient(discord.Client):
 
 	async def on_message(self, message):
 		# limit bot to designated bot channel
-		if message.channel.id in bot_channel_ids:
+		if message.channel.id in config.bot_channel_ids:
 			if message.content.startswith('$server'):
 				await message.channel.send('{0.guild.name} {0.guild.id}'.format(message))
 
@@ -32,10 +28,10 @@ class MyClient(discord.Client):
 	async def on_voice_state_update(self, member, before, after):
 		
 		if after.channel != None:
-			if after.channel.id == channel_id:
+			if after.channel.id == config.channel_id:
 
 				guild = member.guild
-				role = guild.get_role(role_id)
+				role = guild.get_role(config.role_id)
 
 				if role is None:
 					return
@@ -46,10 +42,10 @@ class MyClient(discord.Client):
 					print(e)
 
 		if before.channel != None:
-			if before.channel.id == channel_id:
+			if before.channel.id == config.channel_id:
 				
 				guild = member.guild
-				role = guild.get_role(role_id)
+				role = guild.get_role(config.role_id)
 
 				if role is None:
 					return
@@ -60,5 +56,5 @@ class MyClient(discord.Client):
 					print(e)
 
 client = MyClient()
-client.run(token)
+client.run(config.token)
 
