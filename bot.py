@@ -3,6 +3,7 @@ import discord
 token = ""
 channel_id = 0
 role_id = 0
+bot_channel_ids = [] # bot responds in every channel that's ID you're adding to the list
 
 class MyClient(discord.Client):
 
@@ -11,19 +12,21 @@ class MyClient(discord.Client):
 		print('Bot logged in as {0}'.format(self.user))
 
 	async def on_message(self, message):
-		if message.content.startswith('$server'):
-			await message.channel.send('{0.guild.name} {0.guild.id}'.format(message))
+		# limit bot to designated bot channel
+		if message.channel.id in bot_channel_ids:
+			if message.content.startswith('$server'):
+				await message.channel.send('{0.guild.name} {0.guild.id}'.format(message))
 
-		if message.content.startswith('$roles'):
-			for r in message.guild.roles:
-				await message.channel.send('{0.name} {0.id}'.format(r).replace('@', ''))
+			if message.content.startswith('$roles'):
+				for r in message.guild.roles:
+					await message.channel.send('{0.name} {0.id}'.format(r).replace('@', ''))
 
-		if message.content.startswith('$vchannels'):
-			for v in message.guild.voice_channels:
-				await message.channel.send('{0.name} {0.id}'.format(v))
+			if message.content.startswith('$vchannels'):
+				for v in message.guild.voice_channels:
+					await message.channel.send('{0.name} {0.id}'.format(v))
 
-		if message.content.startswith('$about'):
-			await message.channel.send('FSR-Bot with <3 from ~~TJ~~ FSR ETITS')
+			if message.content.startswith('$about'):
+				await message.channel.send('FSR-Bot with <3 from ~~TJ~~ FSR ETITS')
 
 
 	async def on_voice_state_update(self, member, before, after):
