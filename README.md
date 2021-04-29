@@ -5,6 +5,7 @@ Ein wirklich kleiner Discord Bot der das Problem mit den Abstimmungen und der Be
 ## Anleitung:
 1. [Python](https://www.python.org/downloads/) installieren.
 2. [Discord.py](https://discordpy.readthedocs.io/en/latest/) installieren.
+    1. Einfach: pip install -r requirements.txt
 3. Ein gültiges [Bot-Token](https://discordpy.readthedocs.io/en/latest/discord.html) erzeugen, welches unter **token** eingetragen werden muss. Es reicht ein Discord Account um das Token zu erzeugen.
 4. Den Bot wie im vorherigen Link den Server beitreten lassen.
 5. Den Textchannel umstellen, sodass Nachriten by default keine Reaktionen hinzugefügt werden dürfen
@@ -18,10 +19,10 @@ Ein wirklich kleiner Discord Bot der das Problem mit den Abstimmungen und der Be
 - **$roles** Gibt alle verfügbaren Rollen mit Name und ID aus
 - **$server** Gibt Name und ID des Server aus
 - **$vchannels** Gibt alle verfügbaren Voicechannels mit Name und ID aus
+- **$start meeting** Speichert alle anwesenden User des beobachteten Channels bis zum Stopp
+- **$stop meeting** Stoppt die Beobachtung des Channels und gibt Userliste aus
 
 ## Mögliche Features
 Wenn noch jemand Zeit hat könnte man vielleicht noch einen der folgenden Punkte umsetzen:
-- Befehl um die Sitzung zu starten und zu beenden
-- Automatisches loggen der Teilnehmer für das Protokoll während einer aktiven Sitzung
 - Abstimmung und Auswertung der Abstimmung über Bot-Befehl
 - ...
