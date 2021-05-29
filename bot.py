@@ -31,13 +31,17 @@ async def on_message(message):
 		if message.content.startswith('$about'):
 			await message.channel.send('FSR-Bot with <3 from ~~TJ~~ FSR ETITS')
 
+		if message.content.startswith('$howmany'):
+			channel = client.get_channel(config.channel_id)
+			await message.channel.send('There are {} participants'.format(len(channel.members)))
+
 		if message.content.startswith('$start meeting'):
 			client.runningMeeting = True
 			await message.channel.send('Meeting started!')
 
 			# gather all already present members
 			channel = client.get_channel(config.channel_id)
-			
+
 			for member in channel.members:
 				client.meetingMembers.add(member.display_name)
 
@@ -54,7 +58,7 @@ async def on_message(message):
 
 @client.event
 async def on_voice_state_update(member, before, after):
-	
+
 	# check if role needs to be added
 	if after.channel != None:
 		if after.channel.id == config.channel_id:
@@ -72,7 +76,7 @@ async def on_voice_state_update(member, before, after):
 	# check if role needs to be removed
 	if before.channel != None:
 		if before.channel.id == config.channel_id:
-			
+
 			guild = member.guild
 			role = guild.get_role(config.role_id)
 
